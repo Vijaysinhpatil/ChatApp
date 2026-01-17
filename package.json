@@ -1,0 +1,22 @@
+{
+  "name": "chatapp",
+  "version": "1.0.0",
+  "description": "Real Time Conversation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build" : "npm install --prefix Server && npm install --prefix Client && npm run build --prefix Client",
+    "start": "npm run start --prefix Server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vijaysinhpatil/ChatApp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vijaysinhpatil/ChatApp/issues"
+  },
+  "homepage": "https://github.com/Vijaysinhpatil/ChatApp#readme"
+}
