@@ -6,25 +6,22 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    userName : {
-        type : string,
+    email : {
+        type : String,
         required : true,
-        unique  : true
+        unique : true
     },
     password : {
-        type : string , 
+        type : String , 
         required : true,
-
+        minlength : 6
     },
     profilePhoto : {
-        type : string,
+        type : String,
         default : ""
-    },
-    gender : {
-        type : string,
-        enum : ["male" , "female"],
-        required : true
     }
+},{
+    timestamps : true // createdAt & updatedAt -> used last login and few minutes ago
 })
 export const User = mongoose.model("User" , userSchema);
 export default User;
