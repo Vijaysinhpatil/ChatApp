@@ -2,10 +2,18 @@
 import jwt from "jsonwebtoken";
 
 export const generateToken = ( userId , res ) => {
+
+    const { JWT_SECRET } = process.env;
+
+    if(!JWT_SECRET)
+    {
+        throw new Error("JWT_SECRET is not configured")
+    }
+
     //  creating a token for user
     const token = jwt.sign(
         { userId },  // identifier
-        process.env.JWT_SECRET,
+        JWT_SECRET,
         { expiresIn : '7d'}
     )
 

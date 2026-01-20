@@ -56,9 +56,10 @@ export const signup = async(req , res) => {
 
         if(newUser){
 
-            generateToken(newUser._id , res);
-            await newUser.save() // save data to the database
-
+            // Persist the user first then issue auth cookie
+            const savedUser = await newUser.save();
+            generateToken(savedUser._id , res)
+            
             return res.status(201).json({
                 message : "User Created Successfully..!",
                 _id : newUser._id ,
@@ -66,6 +67,8 @@ export const signup = async(req , res) => {
                 fullName : newUser.fullName,
                 profilePhoto : newUser.profilePhoto
             })
+
+            // Todo : Sending a welcome email to the user
         }else{
              return res.status(400).json({
                 message : "Invalid user Data",
