@@ -7,6 +7,19 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Message {
+
+  id             Int
+  senderId       Int
+  receiverId     Int
+  text           String?
+  image          String?
+  createdAt      DateTime @default(now())
+
+  sender         User     @ralation("SentMessages" , fields : [senderId] , references : [id])
+  receiver       User     @ralation("ReceivedMessages" , fields : [receiverId] , references : [id])
+
+}
 model User {
   id         Int      @id @default(autoincrement())
   email      String   @unique
@@ -15,6 +28,11 @@ model User {
   profilePic String   @default("")
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+
+
+  SentMessages     Message[] @relation("SentMessages")
+  receivedMessages Message[] @ralation("ReceivedMessages")
+  
 }
 
 
