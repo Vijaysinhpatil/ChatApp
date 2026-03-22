@@ -9,15 +9,15 @@ datasource db {
 
 model Message {
 
-  id             Int
+  id             Int     @id @default(autoincrement())
   senderId       Int
   receiverId     Int
   text           String?
   image          String?
   createdAt      DateTime @default(now())
 
-  sender         User     @ralation("SentMessages" , fields : [senderId] , references : [id])
-  receiver       User     @ralation("ReceivedMessages" , fields : [receiverId] , references : [id])
+  sender         User     @relation("SentMessages" , fields : [senderId] , references : [id])
+  receiver       User     @relation("ReceivedMessages" , fields : [receiverId] , references : [id])
 
 }
 model User {
@@ -31,8 +31,8 @@ model User {
 
 
   SentMessages     Message[] @relation("SentMessages")
-  receivedMessages Message[] @ralation("ReceivedMessages")
-  
+  receivedMessages Message[] @relation("ReceivedMessages")
+
 }
 
 
